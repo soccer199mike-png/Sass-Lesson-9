@@ -1,1 +1,28 @@
 // 共通部分＠インクルード
+@mixin size($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+// 幅・高さ・背景色をまとめて指定
+@mixin box($width, $height, $bg-color) {
+    width: $width;
+    height: $height;
+    background-color: $bg-color;
+}
+
+// flexboxの共通指定
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $gap: 0) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    gap: $gap;
+}
+
+// 枠線付きの箱
+@mixin framed($width, $height, $border-width, $border-color) {
+    width: $width;
+    height: $height;
+    border: $border-width solid $border-color;
+}

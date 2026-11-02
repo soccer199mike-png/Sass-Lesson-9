@@ -16,73 +16,64 @@
 // @include mixin.box(width, height, background-color);
 // @include mixin.flex($direction: row, $justify: flex-start, $align: stretch, $gap: 0) {
 
-    // header
-    .header {
-        @include mixin.box(400px, 100px, variable.$navy);
-        @include mixin.flex($justify: flex-end);
-        padding: 20px;
+// header
+.header {
+    @include mixin.box(400px, 100px, variable.$navy);
+    @include mixin.flex($justify: flex-end);
+    padding: 20px;
 
-        &__list {
-            @include mixin.flex($gap: 10px);
-            padding: 10px;
-            background-color: variable.$white;
-        }
+    &__list {
+        @include mixin.flex($gap: 10px);
+        padding: 10px;
+        background-color: variable.$white;
+    }
 
-        &__item {
-            @include mixin.size(40px, 40px);
+    &__item {
+        @include mixin.size(40px, 40px);
 
-            &--purple {
-                background-color: list.nth(variable.$buttonColor, 1);
-            }
-
-            &--orange {
-                background-color: list.nth(variable.$buttonColor, 2);
-            }
-
-            &--blue {
-                background-color: list.nth(variable.$buttonColor, 3);
+        // 3つのボックスの色を@eachでまとめて指定
+        @each $name, $color in list.zip(variable.$classNames, variable.$buttonColor) {
+            &--#{$name} {
+                background-color: $color;
             }
         }
     }
+}
 
-    // sidebar + main
-    .container {
-        @include mixin.flex;
+// sidebar + main
+.container {
+    @include mixin.flex;
+}
+
+.sidebar {
+    @include mixin.box(150px, 250px, variable.$green);
+}
+
+.main {
+    @include mixin.box(250px, 250px, variable.$red);
+    // 三つの箱の位置の調整
+    padding: 40px 0 0 40px;
+
+    &__list {
+        // 3つの箱縦に並べる。箱の間を10pxあける
+        @include mixin.flex($direction: column, $gap: 10px);
     }
 
-    .sidebar {
-        @include mixin.box(150px, 250px, variable.$green);
-    }
+    &__item {
+        // 箱のサイズの指定と、箱の間隔、色の指定
+        @include mixin.framed(150px, 50px, 5px, variable.$white);
 
-    .main {
-        @include mixin.box(250px, 250px, variable.$red);
-        // 三つの箱の位置の調整
-        padding: 40px 0 0 40px;
-
-        &__list {
-            // 3つの箱縦に並べる。箱の間を10pxあける
-            @include mixin.flex($direction: column, $gap: 10px);
-        }
-
-        &__item {
-            // 箱のサイズの指定と、箱の間隔、色の指定
-            @include mixin.framed(150px, 50px, 5px, variable.$white);
-
-            &--purple {
-                background-color: list.nth(variable.$buttonColor, 1);
-            }
-
-            &--orange {
-                background-color: list.nth(variable.$buttonColor, 2);
-            }
-
-            &--blue {
-                background-color: list.nth(variable.$buttonColor, 3);
+        // ボタンなどのHTML要素に対して、動的に「文字色（color）」と
+        // 「背景色（background color）」のクラス名を一括で割り当てる（マッピングする）処理
+        @each $name, $color in list.zip(variable.$classNames, variable.$buttonColor) {
+            &--#{$name} {
+                background-color: $color;
             }
         }
     }
+}
 
-    // footer
-    .footer {
-        @include mixin.box(400px, 100px, variable.$brown);
-    }
+// footer
+.footer {
+    @include mixin.box(400px, 100px, variable.$brown);
+}

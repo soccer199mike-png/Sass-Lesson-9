@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sass puzzle</title>
 </head>
+
 <body>
+  <div class="wrapper">
+    <header class="header">
+      <ul class="header__list">
+        <li class="header__item header__item--purple"></li>
+        <li class="header__item header__item--orange"></li>
+        <li class="header__item header__item--blue"></li>
+      </ul>
+    </header>
+
+    <div class="container">
+      <aside class="sidebar"></aside>
+      <main class="main">
+        <ul class="main__list">
+          <li class="main__item main__item--purple"></li>
+          <li class="main__item main__item--orange"></li>
+          <li class="main__item main__item--blue"></li>
+        </ul>
+      </main>
+    </div>
+
+    <footer class="footer"></footer>
+  </div>
+
   <script type="module" src="./js/index.js"></script>
 </body>
+
 </html>
